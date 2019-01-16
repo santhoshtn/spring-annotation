@@ -14,6 +14,7 @@ public class BeanConfig {
         return actor;
     }
     @Bean("movie")
+    @Scope(value="prototype")
     public Movie getMovieBean1(){
         return new Movie(getActorBean1());
     }
@@ -35,5 +36,18 @@ public class BeanConfig {
     public Movie getMovieBean3(){
         return new Movie(getActorBean3());
     }
-
+    @Bean("actorx")
+    public Actor getActorX(){
+        Actor actor=new Actor();
+        actor.setName("rajnikanth");
+        actor.setAge(45);
+        actor.setGender("male");
+        return actor;
+    }
+    @Bean("moviex")
+    public Movie getMovieX(){
+        Movie movie=new Movie();
+        movie.setActor(getActorX());
+        return movie;
+    }
 }
